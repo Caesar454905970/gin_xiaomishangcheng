@@ -1,0 +1,67 @@
+{{ define "default/index.html"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h2>{{.title}}</h2>
+ <!--  定义变量-->
+  <h2>{{ $t :=.title}}</h2>
+  <h2>{{ $t }}</h2>
+  <h2>条件判断</h2>
+    {{if gt .score 60}}
+        <h2>及格</h2>
+    {{else}}
+        <h2>不及格</h2>
+    {{end}}
+  <br/>
+  <h2>等级判断</h2>
+  {{if gt .score 90}}
+    <h2>优秀</h2>
+  {{else if gt .score 80 }}
+  <h2>良好</h2>
+  {{else if gt .score 60 }}
+  <h2>及格</h2>
+  {{else}}
+  <h2>不及格</h2>
+  {{end}}
+
+  <br/>
+  <h3>循环遍历切片数据</h3>
+  <ul>
+    {{ range $key,$value :=.hobby}}
+      <li>{{$key}}--{{$value}}</li>
+    {{end}}
+  </ul>
+
+  <br/>
+  <h3>循环遍历结构体数据</h3>
+  <ul>
+    {{ range $key,$value :=.newsList}}
+    <li>{{$key}}--{{$value.Title}}--{{$value.Content}}</li>
+    {{end}}
+  </ul>
+
+  <br/>
+  <h3>循环遍历切片数据</h3>
+  <ul>
+    {{ range $key,$value :=.testSlice}}
+      <li>{{$key}}--{{$value}}</li>
+    {{else}}
+      <li>切片数组中没有数据</li>
+    {{end}}
+  </ul>
+  <br>
+  <h2>with 解构结构体：把.news赋值给了.</h2>
+  {{with .news}}
+    <p>{{.Title}}</p>
+    <p>{{.Content}}</p>
+  {{end}}
+  <p>{{.news.Title}}</p>
+  <p>{{.news.Content}}</p>
+</body>
+</html>
+{{end}}
