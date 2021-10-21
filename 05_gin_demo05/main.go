@@ -73,7 +73,7 @@ func main() {
 	//post演示
 	//http://localhost:8080/article?id=12
 	r.GET("/user", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "default/user.html", gin.H{})
+		c.HTML(http.StatusOK, "itying/user.html", gin.H{})
 	})
 	r.POST("/doAddUser", func(c *gin.Context) {
 		//获取表单post过来的数据:一个一个获取

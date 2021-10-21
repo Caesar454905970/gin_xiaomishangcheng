@@ -17,7 +17,7 @@ func main() {
 
 	//前台页面
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "default/index.html", gin.H{
+		c.HTML(http.StatusOK, "itying/index.html", gin.H{
 			"title": "首页",
 			"score": 89,
 			//定义一个切片
@@ -45,7 +45,7 @@ func main() {
 			Title:   "新闻标题",
 			Content: "新闻内容",
 		}
-		c.HTML(http.StatusOK, "default/news.html", gin.H{
+		c.HTML(http.StatusOK, "itying/news.html", gin.H{
 			"title": "新闻页面",
 			"news":  news,
 		})
