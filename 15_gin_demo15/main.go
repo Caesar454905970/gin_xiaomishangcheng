@@ -1,52 +1,37 @@
 package main
 
 import (
-	"14_gin_demo14/models"
-	"fmt"
+	"gindemo15/models"
+	"gindemo15/routers"
+	"html/template"
+
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	// 创建一个默认的路由引擎
 	r := gin.Default()
-
-	r.GET("/", func(c *gin.Context) {
-		//实例化结构体
-		user := models.User{
-			Username: "成强",
-			Age:      12,
-			Email:    "454905970@qq.com",
-			AddTime:  11111111111,
-		}
-		//创建新增(传入地址)
-		models.DB.Create(&user)
-		fmt.Println(user)
-		c.String(200, "增加用户:%v", user)
-
+	//自定义模板函数  注意要把这个函数放在加载模板前
+	r.SetFuncMap(template.FuncMap{
+		"UnixToTime": models.UnixToTime,
 	})
-	r.GET("/news", func(c *gin.Context) {
-		//保存所有字段
-		user := models.User{Id: 6}
-		models.DB.Find(&user)
-		//更新数据
-		user.Username = "你好"
-		user.Email = "jinmianyiliao.com"
-		models.DB.Save(user)
+	//加载模板 放在配置路由前面
+	r.LoadHTMLGlob("templates/**/*")
+	//配置静态web目录   第一个参数表示路由, 第二个参数表示映射的目录
+	r.Static("/static", "./static")
 
-		fmt.Println(user)
-		c.String(200, "修改用户")
+	// 创建基于 cookie 的存储引擎，secret11111 参数是用于加密的密钥
+	store := cookie.NewStore([]byte("secret111"))
+	//配置session的中间件 store是前面创建的存储引擎，我们可以替换成其他存储引擎
+	r.Use(sessions.Sessions("mysession", store))
 
-	})
-	r.GET("/news1", func(c *gin.Context) {
-		//更新数据
-		user := models.User{}
-		models.DB.Model(&user).Where("id =?", 6).Update("username", "成强")
-		c.String(200, "修改用户")
-	})
-	r.GET("/news2", func(c *gin.Context) {
-		//删除数据
-		user := models.User{}
-		models.DB.Model(&user).Where("id =?", 6).Delete("username", "成强")
-		c.String(200, "修改用户")
-	})
+	routers.AdminRoutersInit(r)
+
+	routers.ApiRoutersInit(r)
+
+	routers.DefaultRoutersInit(r)
+
 	r.Run()
 }

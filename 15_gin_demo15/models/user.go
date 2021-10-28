@@ -1,8 +1,6 @@
 package models
 
-//定义 user 模型：
-type User struct { // 默认表名是 `users`
-	//首字母大写，增加外部访问
+type User struct {
 	Id       int
 	Username string
 	Age      int
@@ -10,7 +8,7 @@ type User struct { // 默认表名是 `users`
 	AddTime  int
 }
 
-//表示把 User 结构体默认操作的表改为 user 表
+//表示配置操作数据库的表名称
 func (User) TableName() string {
 	return "user"
 }
