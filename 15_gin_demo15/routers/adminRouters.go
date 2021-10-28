@@ -1,8 +1,8 @@
 package routers
 
 import (
-	"gindemo15/controllers/admin"
-	"gindemo15/middlewares"
+	"15_gin_demo15/controllers/admin"
+	"15_gin_demo15/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,5 +23,7 @@ func AdminRoutersInit(r *gin.Engine) {
 		adminRouters.GET("/article/edit", admin.ArticleController{}.Edit)
 
 		adminRouters.GET("/nav", admin.NavController{}.Index)
+
+		adminRouters.GET("/student", admin.StudentController{}.Index)
 	}
 }

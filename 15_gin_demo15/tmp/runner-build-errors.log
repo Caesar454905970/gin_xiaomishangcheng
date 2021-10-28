@@ -1,0 +1,12 @@
+# 15_gin_demo15/controllers/admin
+controllers\admin\studentController.go:14:3: invalid character U+3001 '、' in identifier
+controllers\admin\studentController.go:14:3: syntax error: unexpected 、获取所有的学生信息 at end of statement
+controllers\admin\studentController.go:21:3: invalid character U+3001 '、' in identifier
+controllers\admin\studentController.go:21:3: syntax error: unexpected 、获取所有的课程信息 at end of statement
+controllers\admin\studentController.go:29:3: invalid character U+3001 '、' in identifier
+controllers\admin\studentController.go:29:3: syntax error: unexpected 、查询学生信息的时候 at end of statement
+controllers\admin\studentController.go:36:3: invalid character U+3001 '、' in identifier
+controllers\admin\studentController.go:36:3: syntax error: unexpected 、查询张三 at end of statement
+controllers\admin\studentController.go:44:3: invalid character U+3001 '、' in identifier
+controllers\admin\studentController.go:44:3: syntax error: unexpected 、查询课程被哪些学生选修了 at end of statement
+controllers\admin\studentController.go:44:3: too many errors

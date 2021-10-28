@@ -1,8 +1,8 @@
 package main
 
 import (
-	"gindemo15/models"
-	"gindemo15/routers"
+	"15_gin_demo15/models"
+	"15_gin_demo15/routers"
 	"html/template"
 
 	"github.com/gin-contrib/sessions"

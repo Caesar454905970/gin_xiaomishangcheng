@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"gindemo15/controllers/itying"
+	"15_gin_demo15/controllers/itying"
 
 	"github.com/gin-gonic/gin"
 )
