@@ -3,11 +3,10 @@ package main
 import (
 	"15_gin_demo15/models"
 	"15_gin_demo15/routers"
-	"html/template"
-
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
+	"html/template"
 )
 
 func main() {
@@ -33,5 +32,20 @@ func main() {
 
 	routers.DefaultRoutersInit(r)
 
+	//演示go-ini的使用
+	//config, err := ini.Load("./conf/app.ini")
+	//if err != nil {
+	//	//失败
+	//	fmt.Printf("Fail to read file: %v", err)
+	//	os.Exi t(1)
+	//}
+	////获取ini里面的配置
+	//fmt.Println("App Mode:", config.Section("").Key("app_name").String())
+	//fmt.Println("App Mode:", config.Section("mysql").Key("password").String())
+	//fmt.Println("App Mode:", config.Section("redis").Key("ip").String())
+	////给ini写入数据
+	//config.Section("").Key("app_name").SetValue("成强")
+	//config.Section("").Key("admin_path").SetValue("/admin")
+	//config.SaveTo("./conf/app.ini")
 	r.Run()
 }
