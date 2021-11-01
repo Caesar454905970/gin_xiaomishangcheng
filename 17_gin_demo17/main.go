@@ -47,5 +47,5 @@ func main() {
 	//config.Section("").Key("app_name").SetValue("成强")
 	//config.Section("").Key("admin_path").SetValue("/admin")
 	//config.SaveTo("./conf/app.ini")
-	r.Run()
+	r.Run(":8081")
 }

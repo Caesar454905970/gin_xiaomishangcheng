@@ -1,1 +1,1 @@
-docker build -t chengqiang .
+docker build -t chengqiang3 .
