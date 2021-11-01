@@ -7,12 +7,16 @@ import (
 )
 
 // 设置自带的 store（可以配置成redis）
-var store = base64Captcha.DefaultMemStore
+//var store = base64Captcha.DefaultMemStore
+
+//配置RedisStore RedisStore实现base64Captcha.Store的接口
+var store base64Captcha.Store = RedisStore{}
 
 //获取验证码
 func MakeCaptcha() (id, b64s string, err error) {
 	var driver base64Captcha.Driver
 	//配置验证码的参数
+	//driverString := base64Captcha.DriverChinese{//中文验证码
 	driverString := base64Captcha.DriverString{
 		Height:          40,
 		Width:           100,
@@ -20,8 +24,9 @@ func MakeCaptcha() (id, b64s string, err error) {
 		ShowLineOptions: 2 | 4,
 		Length:          4,
 		Source:          "1234567890qwertyuioplkjhgfdsazxcvbnm",
-		BgColor:         &color.RGBA{R: 3, G: 102, B: 214, A: 125},
-		Fonts:           []string{"wqy-microhei.ttc"},
+		//Source: "生成的就是中文验证码这里面的文字是配置文字源的",
+		BgColor: &color.RGBA{R: 3, G: 102, B: 214, A: 125},
+		Fonts:   []string{"wqy-microhei.ttc"},
 	}
 	//ConvertFonts 按名称加载字体
 	driver = driverString.ConvertFonts()
