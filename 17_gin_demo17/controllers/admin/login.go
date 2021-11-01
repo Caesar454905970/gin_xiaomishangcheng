@@ -4,6 +4,7 @@ import (
 	"17_gin_demo17/models"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,8 +21,8 @@ func (con LoginController) DoLogin(c *gin.Context) {
 	//获取前端传过来的CaptchaId和verifyValue
 	captchId := c.PostForm("captchaId")
 	verifyValue := c.PostForm("verifyValue")
-	//排除前端提交的空请求
-	if captchId == "" || verifyValue == "" {
+	//排除前端提交的空请求(字符串前后空格)strings.Trim(str," ")
+	if strings.Trim(captchId, " ") == "" || strings.Trim(verifyValue, " ") == "" {
 		c.JSON(http.StatusOK, gin.H{
 			"msg":               "验证码验证失败",
 			"verifyValueResult": false,
