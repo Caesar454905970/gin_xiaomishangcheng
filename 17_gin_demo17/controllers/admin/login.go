@@ -52,6 +52,9 @@ func (con LoginController) Captcha(c *gin.Context) {
 		//失败
 		fmt.Println(err)
 	}
+	type code struct {
+		BaseController
+	}
 	c.JSON(200, gin.H{
 		"CaptchaId":    id,
 		"CaptchaImage": b64s, //验证码的url地址
