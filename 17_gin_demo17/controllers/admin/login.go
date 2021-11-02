@@ -35,13 +35,13 @@ func (con LoginController) DoLogin(c *gin.Context) {
 		fmt.Println(flag)
 		c.JSON(http.StatusOK, gin.H{
 			"msg":               "验证码验证成功",
-			"verifyValueResult": true,
+			"verifyValueResult": "true",
 		})
 	} else {
 		//验证失败
 		c.JSON(http.StatusOK, gin.H{
 			"msg":               "验证码验证失败",
-			"verifyValueResult": false,
+			"verifyValueResult": "false",
 		})
 	}
 
