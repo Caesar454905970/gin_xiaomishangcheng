@@ -24,6 +24,7 @@ func (con LoginController) DoLogin(c *gin.Context) {
 	//排除前端提交的空请求(字符串前后空格)strings.Trim(str," ")
 	if strings.Trim(captchId, " ") == "" || strings.Trim(verifyValue, " ") == "" {
 		c.JSON(http.StatusOK, gin.H{
+			"code":              400,
 			"msg":               "验证码验证失败",
 			"verifyValueResult": false,
 		})
@@ -34,14 +35,16 @@ func (con LoginController) DoLogin(c *gin.Context) {
 		//验证通过
 		fmt.Println(flag)
 		c.JSON(http.StatusOK, gin.H{
+			"code":              200,
 			"msg":               "验证码验证成功",
 			"verifyValueResult": "true",
 		})
 	} else {
 		//验证失败
 		c.JSON(http.StatusOK, gin.H{
+			"code":              400,
 			"msg":               "验证码验证失败",
-			"verifyValueResult": "false",
+			"verifyValueResult": false,
 		})
 	}
 
@@ -56,6 +59,8 @@ func (con LoginController) Captcha(c *gin.Context) {
 		BaseController
 	}
 	c.JSON(200, gin.H{
+		"code":         200,
+		"msg":          "获取验证码验证成功",
 		"CaptchaId":    id,
 		"CaptchaImage": b64s, //验证码的url地址
 	})
