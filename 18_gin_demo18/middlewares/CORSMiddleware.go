@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+//解决跨域问题
 func CORSMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		ctx.Writer.Header().Set("Access-Control-Allow-Origin", "*")

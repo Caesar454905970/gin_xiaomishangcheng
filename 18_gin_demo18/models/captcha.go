@@ -22,7 +22,7 @@ func MakeCaptcha() (id, b64s string, err error) {
 		Width:           100,
 		NoiseCount:      0,
 		ShowLineOptions: 2 | 4,
-		Length:          4,
+		Length:          2, //验证码长度
 		Source:          "1234567890qwertyuioplkjhgfdsazxcvbnm",
 		//Source: "生成的就是中文验证码这里面的文字是配置文字源的",
 		BgColor: &color.RGBA{R: 3, G: 102, B: 214, A: 125},

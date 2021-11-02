@@ -2,6 +2,7 @@ package admin
 
 import (
 	"18_gin_demo18/models"
+	"encoding/json"
 	"fmt"
 	"github.com/gin-contrib/sessions"
 	"net/http"
@@ -47,7 +48,7 @@ func (con LoginController) DoLogin(c *gin.Context) {
 		userinfoList := []models.Manager{}
 		//对前端传过来的密码进行Md5加密
 		password = models.Md5(password)
-		//把查询结果保存到userinfo(传入地址)
+		//把查询结果=所有字段保存到userinfo(传入地址)
 
 		models.DB.Where("username = ? AND password = ?", username, password).Find(&userinfoList)
 
@@ -63,7 +64,9 @@ func (con LoginController) DoLogin(c *gin.Context) {
 			session := sessions.Default(c)
 
 			//保存用户信息，sessions:服务器端
-			session.Set("userinfo", userinfoList)
+			//session.Set不能直接保存切片,把结构体转换成json字符串
+			userinfoSlice, _ := json.Marshal(userinfoList)
+			session.Set("userinfo", string(userinfoSlice))
 			session.Save()
 
 			//提示登录成功信息
@@ -123,5 +126,16 @@ func (con LoginController) Captcha(c *gin.Context) {
 		"msg":          "获取验证码验证成功",
 		"CaptchaId":    id,
 		"CaptchaImage": b64s, //验证码的url地址
+	})
+}
+
+func (con LoginController) LoginOut(c *gin.Context) {
+	//销毁session
+	session := sessions.Default(c)
+	session.Delete("userinfo")
+	session.Save()
+	c.JSON(200, gin.H{
+		"code": 200,
+		"msg":  "退出session成功，删除session",
 	})
 }
