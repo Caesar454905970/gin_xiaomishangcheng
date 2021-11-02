@@ -14,6 +14,6 @@ ADD . /home/17_gin_demo17
  
 RUN go build main.go
  
-EXPOSE 8080
+EXPOSE 8081
  
 ENTRYPOINT ["./main"]

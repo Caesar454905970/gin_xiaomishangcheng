@@ -1,0 +1,2 @@
+# 17_gin_demo17/controllers/admin
+controllers\admin\login.go:75:10: undefined: msg1

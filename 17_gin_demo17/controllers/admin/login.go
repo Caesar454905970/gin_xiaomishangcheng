@@ -58,6 +58,19 @@ func (con LoginController) Captcha(c *gin.Context) {
 	type code struct {
 		BaseController
 	}
+	//结构体返回，灵活使用tag来对结构体字段做定制化操作
+	//type msg struct {
+	//	Code     int `json:"code"`
+	//	Msg    string `json:"msg"`
+	//	CaptchaId string `json:"captchaId"`
+	//	CaptchaImage     string `json:"captchaImage"`
+	//}
+	//msg1 :=msg{
+	//	Code:         200,
+	//	Msg:          "获取验证码验证成功",
+	//	CaptchaId:    id,
+	//	CaptchaImage: b64s, //验证码的url地址
+	//}
 	c.JSON(200, gin.H{
 		"code":         200,
 		"msg":          "获取验证码验证成功",
