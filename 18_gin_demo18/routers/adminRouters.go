@@ -8,8 +8,8 @@ import (
 )
 
 func AdminRoutersInit(r *gin.Engine) {
-	//middlewares.InitMiddleware中间件
-	adminRouters := r.Group("/admin", middlewares.InitMiddleware)
+	//middlewares.InitAdminAuthMiddleware中间件(先走鉴权中间件)
+	adminRouters := r.Group("/admin", middlewares.InitAdminAuthMiddleware)
 	{
 		adminRouters.GET("/", admin.MainController{}.Index)
 
